@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanInventory" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2122add-7427-4669-8326-481682212ee6">
+	<property name="ireport.zoom" value="1.331000000000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select ID_barang, nama_barang, jenis, merek, tipe, satuan, stock, status_barang, YEAR(now()) from tblinventory i, tbljenis j, tblmerek m, tbltipe t, tblsatuan s where i.ID_tipe = t.ID_tipe AND i.ID_satuan = s.ID_satuan AND j.ID_jenis = t.ID_jenis AND m.ID_merek = t.ID_merek]]>
+	</queryString>
+	<field name="ID_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="merek" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipe" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="satuan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="stock" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="YEAR(now())" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="193" splitType="Stretch">
+			<textField>
+				<reportElement x="164" y="154" width="234" height="30" uuid="524c54d5-d556-4088-a68c-d30d7233d7a1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YEAR(now())}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="163" y="122" width="234" height="32" uuid="9a926168-c271-4dc5-a877-083d819ab555"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Laporan Inventory]]></text>
+			</staticText>
+			<image>
+				<reportElement x="29" y="2" width="555" height="98" uuid="aee76877-b372-48ce-96e8-558e4ecd3e30"/>
+				<imageExpression><![CDATA["C:\\Users\\Cheria\\Documents\\NetBeansProjects\\RadhaSanakaraApp\\src\\radhasankara\\kop.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="1" y="192" width="555" height="1" uuid="ef678d39-a079-4d3f-9c5c-c03ebbe45892"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="202" height="20" uuid="8d776b82-1018-4785-a452-c2eb18416fb2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="c15f2320-6260-41a3-b9fa-445e937ea2a2"/>
+			</line>
+			<staticText>
+				<reportElement x="203" y="0" width="54" height="20" uuid="12ee38cc-3994-4dac-85e0-b1a496b6045a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jenis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="0" width="54" height="20" uuid="288675b7-2c1d-439c-bd97-021b89c4368e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Merek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="0" width="54" height="20" uuid="be14e2cc-6d3a-434d-b4aa-051cb89fbd3e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Tipe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="0" width="54" height="20" uuid="0c5518b2-0d48-4b55-adf7-d5e3a0621348"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="0" width="54" height="20" uuid="9549a6d0-2d4e-4d76-a2f8-0e1e6c3fcef6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="0" width="82" height="20" uuid="ff54ae27-dbc3-42e7-8ca2-9b6ffbafd4ad"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="202" height="20" uuid="99a3cef7-18bb-46d7-afa5-0178504ead1f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="0" width="54" height="20" uuid="c0b4b557-8d2e-414a-941d-b4aa17e2f7cb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="0" width="54" height="20" uuid="30c27b16-2ab8-4adc-a2b8-51c68a47feb0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{merek}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="0" width="54" height="20" uuid="ed8fc6ad-9633-4c28-9145-9d08e1910d1c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="0" width="54" height="20" uuid="e89fe8d4-f65c-4db2-999b-aafb72801edc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="0" width="54" height="20" uuid="bb1be81d-0867-42fa-b430-48d89a622b54"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="0" width="82" height="20" uuid="3d5138c6-e094-426e-a56a-fdf1fb9f7cdd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status_barang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="422" y="16" width="80" height="20" uuid="0ea7a446-3bab-4a24-993c-1ba31f359317"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="502" y="16" width="40" height="20" uuid="b5c12431-d011-421a-baec-881a17b56c32"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="19" y="16" width="100" height="20" uuid="90a2d128-e651-4daf-a4b0-bf3994a9d11d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanKeuangan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="a2122add-7427-4669-8326-481682212ee6">
+	<property name="ireport.zoom" value="1.3310000000000037"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select YEAR(now()), SUM(jumlah_jual*harga_jual), (select SUM(jumlah_beli*harga_beli)  from tblpembelian), SUM(jumlah_jual*harga_jual)-(select SUM(jumlah_beli*harga_beli)  from tblpembelian) from tblpenjualan where YEAR(tanggal_jual) = YEAR(now()) AND (select YEAR(tanggal_beli) from tblpembelian group by (YEAR(tanggal_beli))) = YEAR(now()) group by YEAR(now())]]>
+	</queryString>
+	<field name="YEAR(now())" class="java.lang.Long"/>
+	<field name="SUM(jumlah_jual*harga_jual)" class="java.lang.Double"/>
+	<field name="(select SUM(jumlah_beli*harga_beli)  from tblpembelian)" class="java.lang.Double"/>
+	<field name="SUM(jumlah_jual*harga_jual)-(select SUM(jumlah_beli*harga_beli)  from tblpembelian)" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="193" splitType="Stretch">
+			<staticText>
+				<reportElement x="165" y="122" width="234" height="32" uuid="9a926168-c271-4dc5-a877-083d819ab555"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<text><![CDATA[Laporan Keuangan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="165" y="154" width="234" height="30" uuid="8e49f8c1-5cb0-4085-a8f6-0ef22b604235"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YEAR(now())}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="29" y="2" width="555" height="98" uuid="bccaa154-ee43-4af3-b35e-e26306804755"/>
+				<imageExpression><![CDATA["C:\\Users\\Cheria\\Documents\\NetBeansProjects\\RadhaSanakaraApp\\src\\radhasankara\\kop.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="c15f2320-6260-41a3-b9fa-445e937ea2a2"/>
+			</line>
+			<staticText>
+				<reportElement x="41" y="1" width="168" height="20" uuid="3d8fff2f-026a-45e0-90bb-d8da527e6355"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Pembelian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="1" width="168" height="20" uuid="8d776b82-1018-4785-a452-c2eb18416fb2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Penjualan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="1" width="168" height="20" uuid="f1944729-fe5b-4813-bcfa-4f2c22c50141"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Selisih]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="50b45419-38a1-49b0-be46-703786fcf348"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField pattern="Rp ###0.0">
+				<reportElement x="41" y="0" width="168" height="20" uuid="32c45524-c66e-4789-8c22-c6c45d3e68ff"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{(select SUM(jumlah_beli*harga_beli)  from tblpembelian)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp ###0.0">
+				<reportElement x="192" y="0" width="168" height="20" uuid="99a3cef7-18bb-46d7-afa5-0178504ead1f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(jumlah_jual*harga_jual)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp ###0.0">
+				<reportElement x="343" y="0" width="168" height="20" uuid="78cb54c3-49f4-4982-b5f7-9137e2f30b12"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(jumlah_jual*harga_jual)-(select SUM(jumlah_beli*harga_beli)  from tblpembelian)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="422" y="16" width="80" height="20" uuid="0ea7a446-3bab-4a24-993c-1ba31f359317"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="502" y="16" width="40" height="20" uuid="b5c12431-d011-421a-baec-881a17b56c32"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="19" y="16" width="100" height="20" uuid="90a2d128-e651-4daf-a4b0-bf3994a9d11d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

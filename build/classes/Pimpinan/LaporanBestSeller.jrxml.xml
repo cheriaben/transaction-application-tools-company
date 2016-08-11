@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanBestSeller" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2122add-7427-4669-8326-481682212ee6">
+	<property name="ireport.zoom" value="1.3310000000000053"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Cheria\\Documents\\NetBeansProjects\\RadhaSanakaraApp\\src\\Pimpinan\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT nama_barang, SUM(jumlah_jual), MONTHNAME(tanggal_jual), YEAR(tanggal_jual)
+FROM tblpenjualan j, tblinventory i
+WHERE j.ID_barang = i.ID_barang
+AND YEAR(now()) = YEAR(tanggal_jual)
+AND status_penjualan = 'Lunas'
+group by j.ID_barang 
+ORDER BY SUM(jumlah_jual) desc]]>
+	</queryString>
+	<field name="nama_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM(jumlah_jual)" class="java.math.BigDecimal"/>
+	<field name="MONTHNAME(tanggal_jual)" class="java.lang.String"/>
+	<field name="YEAR(tanggal_jual)" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="214" splitType="Stretch">
+			<staticText>
+				<reportElement x="139" y="122" width="283" height="32" uuid="9a926168-c271-4dc5-a877-083d819ab555"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Times New Roman" size="20" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Laporan Produk Best Seller]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="167" y="154" width="234" height="30" uuid="8e49f8c1-5cb0-4085-a8f6-0ef22b604235"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YEAR(tanggal_jual)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="188" width="111" height="20" uuid="7afc8384-306e-45c3-8006-1b748c2fea0c"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MONTHNAME(tanggal_jual)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="188" width="41" height="20" uuid="bbea88b7-ed48-4ca4-803d-c5bd4180460e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Bulan:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="29" y="2" width="555" height="98" uuid="b1c21e37-123a-4e82-91db-bde525074b81"/>
+				<imageExpression><![CDATA["C:\\Users\\Cheria\\Documents\\NetBeansProjects\\RadhaSanakaraApp\\src\\radhasankara\\kop.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="51" y="0" width="371" height="20" uuid="8d776b82-1018-4785-a452-c2eb18416fb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="c15f2320-6260-41a3-b9fa-445e937ea2a2"/>
+			</line>
+			<staticText>
+				<reportElement x="422" y="0" width="68" height="20" uuid="925fa1c3-05f0-4444-9bef-286679acdceb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="50b45419-38a1-49b0-be46-703786fcf348"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="51" y="0" width="371" height="20" uuid="99a3cef7-18bb-46d7-afa5-0178504ead1f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama_barang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="68" height="20" uuid="42dca7c7-6518-48ec-9d89-13b899a70ef9"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(jumlah_jual)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="422" y="16" width="80" height="20" uuid="0ea7a446-3bab-4a24-993c-1ba31f359317"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="502" y="16" width="40" height="20" uuid="b5c12431-d011-421a-baec-881a17b56c32"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="19" y="16" width="100" height="20" uuid="90a2d128-e651-4daf-a4b0-bf3994a9d11d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
